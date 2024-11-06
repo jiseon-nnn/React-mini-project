@@ -17,7 +17,6 @@ function App() {
 
   return (
     <>
-
       <Routes>
         <Route path={'/'} element={<Main />} />
         <Route path={'/details'} element={<MovieDetail movie={movieDetail} />} />
