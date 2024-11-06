@@ -16,12 +16,12 @@ const Main = () => (
 function App() {
 
   return (
-    <>
+    <main>
       <Routes>
         <Route path={'/'} element={<Main />} />
         <Route path={'/details'} element={<MovieDetail movie={movieDetail} />} />
       </Routes>
-    </>
+    </main>
   )
 }
 
