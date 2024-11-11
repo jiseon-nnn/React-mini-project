@@ -49,5 +49,3 @@ export const MovieDetail = () => {
         </section>
     )
 }
-
-console.log(MovieDetail)
