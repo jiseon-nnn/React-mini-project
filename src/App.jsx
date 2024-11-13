@@ -4,8 +4,9 @@ import { MovieCard } from './components/MovieCard'
 import { MovieDetail } from './components/MovieDetail';
 import { useEffect, useState } from 'react';
 import { NavBar } from './components/NavBar';
-import { SignUp } from './components/Signup';
+import { SignUp } from './components/SignUp';
 import { Login } from './components/Login';
+import { Logout } from './components/Logout';
 
 
 export const API_BASE_URL = "https://api.themoviedb.org/3/movie"
@@ -13,7 +14,7 @@ export const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500"
 export const API_KEY = import.meta.env.VITE_TMDB_API_KEY
 
 const Main = ({movies}) => (
-    <div className='flex flex-wrap gap-[10px] justify-center'>
+    <div className='movieCards'>
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
@@ -49,6 +50,7 @@ function App() {
           <Route path={'/details/:movieId'}  element={<MovieDetail />} />
           <Route path={'/signup'} element={<SignUp />} />
           <Route path={'/login'} element={<Login />} />
+          <Route path={'logout'} element={<Logout />} />
         </Routes>
       </main>
     </>

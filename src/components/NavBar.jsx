@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom"
 import { useDebounce } from '../components/useDebounce'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { API_KEY } from "../App"
+import { Logout } from "./Logout"
+import { useUser } from "./useUser"
+
 
 export const NavBar = ({query, setQuery, setMovieList, fetchPopularAPI }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const debouncedQuery = useDebounce(query, 1000)
+    const loginUser = useUser()
 
-        const handleSearchData = (e) => {
+    const handleSearchData = (e) => {
         setQuery(e.target.value)
     }
 
+    // search API fetch
     const fetchMovies = async (searchQeury) => {
         try {
             const response = await fetch(
@@ -31,11 +37,30 @@ export const NavBar = ({query, setQuery, setMovieList, fetchPopularAPI }) => {
         }
     }, [debouncedQuery])
 
+    const handleToggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    }
+
+    const renderMenu = () => {
+        return (
+            <div className="renderMenu">
+                <ul>
+                    <li>
+                        <span>즐겨찾기</span>
+                    </li>
+                    <li>
+                        <Logout />
+                    </li>
+                </ul>
+            </div>
+
+        )
+    }
 
     return(
         <nav>
             <Link className='grow-[1] flex items-center' to={'/'}>
-                <img src='src/assets/doong.png' alt="logo" className="doong" />
+                <img src='/assets/doong.png' alt="logo" className="doong" />
                 <span className="title">DOONG MOVIE</span>
             </Link>
                 <div>
@@ -49,12 +74,22 @@ export const NavBar = ({query, setQuery, setMovieList, fetchPopularAPI }) => {
                     검색</button>
             </div>
             <div className="nav_hidden">
-                <Link to={'/signup'}>
-                    <span>회원가입 </span>
-                </Link>
-                <Link to={'/login'}>
-                    <span> 로그인</span>
-                </Link>
+                {!loginUser? (
+                    <>
+                        <Link to={'/signup'}>
+                            <span>회원가입 </span>
+                        </Link>
+                        <Link to={'/login'}>
+                            <span> 로그인</span>
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <button className="userBtn"
+                        onClick={handleToggleMenu}>👤</button>
+                        {isMenuOpen && renderMenu()}
+                    </>
+                )}
             </div>
             <div>
                 <input className="hamburger" type="button" value="&#9776;"

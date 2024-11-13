@@ -6,7 +6,7 @@ export const MovieCard = ({ movie }) => {
 
     return (
             <section
-            className="h-[330px] w-[180px] border-[1px] border-gray-200 bg-white rounded-b-[5px]"
+            className="movieCard"
             onClick={()=> navigate(`/details/${movie.id}`)}>
                 <img 
                 className="w-[100%] h-[250px]"
