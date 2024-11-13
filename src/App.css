@@ -119,6 +119,13 @@ nav {
   border-radius: 10px 10px 10px 0;
 }
 
+.searchInput {
+  color: black;
+  padding: 4px 8px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
 .searchBtn {
   padding: 4px 6px;
   background-color: gainsboro;
@@ -206,6 +213,10 @@ nav {
 }
 
 @media screen and (max-width: 750px) {
+  nav {
+    gap: 20px
+  }
+
   .nav_hidden {
     display: none;
   }
@@ -220,7 +231,9 @@ nav {
     font-size: 70%;
     transition: 0.1s;
   }
-
+  .searchInput {
+    width: 160px;
+  }
 }
 
 @media screen and (max-width: 555px) {

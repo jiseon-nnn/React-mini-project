@@ -65,7 +65,7 @@ export const NavBar = ({query, setQuery, setMovieList, fetchPopularAPI }) => {
             </Link>
                 <div>
                 <input type="text" placeholder="제목을 검색하세요"
-                className="text-[black] py-[4px] px-[8px] mr-2" 
+                className="searchInput" 
                 onChange={handleSearchData}
                 value={query}
                 />
